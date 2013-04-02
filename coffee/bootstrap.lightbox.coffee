@@ -1,17 +1,18 @@
 ###
-Lightbox v2.51
-by Lokesh Dhakar - http://www.lokeshdhakar.com
+Lightbox for Bootstrap
+by Dan Jones - http://djinteractive.co.uk
 
-For more information, visit:
-http://lokeshdhakar.com/projects/lightbox2/
-
-Licensed under the Creative Commons Attribution 2.5 License - http://creativecommons.org/licenses/by/2.5/
-- free for use in both personal and commercial projects
-- attribution requires leaving author name, author link, and the license info intact
+Attribution
+=================
+Forked from Lightbox v2.51 - http://lokeshdhakar.com/projects/lightbox2/
 
 Thanks
 - Scott Upton(uptonic.com), Peter-Paul Koch(quirksmode.com), and Thomas Fuchs(mir.aculo.us) for ideas, libs, and snippets.
 - Artemy Tregubenko (arty.name) for cleanup and help in updating to latest proto-aculous in v2.05.
+
+Licensed under the Creative Commons Attribution 2.5 License - http://creativecommons.org/licenses/by/2.5/
+- free for use in both personal and commercial projects
+- attribution requires leaving author name, author link, and the license info intact
 
 
 Table of Contents
@@ -68,7 +69,8 @@ class Lightbox
   # Loop through anchors and areamaps looking for rel attributes that contain 'lightbox'
   # On clicking these, start lightbox.
   enable: ->
-    $('body').on 'click', 'a[rel^=lightbox], area[rel^=lightbox]', (e) =>
+    $('body').on 'click', '.thumbnails[data-toggle^=lightbox] .thumbnail', (e) =>
+      console.log('click')
       @start $(e.currentTarget)
       false
 
@@ -76,7 +78,7 @@ class Lightbox
   # Build html for the lightbox and the overlay.
   # Attach event handlers to the new DOM elements. click click click
   build: ->
-    $("<div>", id: 'lightboxOverlay' ).after(
+    $("<div/>", id: 'lightboxOverlay' ).appendTo $('body')
       $('<div/>', id: 'lightbox').append(
         $('<div/>', class: 'lb-outerContainer').append(
           $('<div/>', class: 'lb-container').append(
@@ -105,8 +107,7 @@ class Lightbox
             )
           )
         )
-      )
-    ).appendTo $('body')
+      ).appendTo $('body')
 
     # Attach event handlers to the newly minted DOM elements
     $('#lightboxOverlay')
@@ -143,6 +144,8 @@ class Lightbox
 
   # Show overlay and lightbox. If the image is part of a set, add siblings to album array.
   start: ($link) ->
+    if !$link.attr('href')  && !$link.attr('data-target')
+      return
     $(window).on "resize", @sizeOverlay
 
     $('select, object, embed').css visibility: "hidden"
@@ -153,16 +156,21 @@ class Lightbox
 
     @album = []
     imageNumber = 0
+    current = 0;
 
-    if $link.attr('rel') == 'lightbox'
-      # If image is not part of a set
-      @album.push link: $link.attr('href'), title: $link.attr('title')
-    else
+    if $link.parents(".thumbnails").attr('data-toggle') == 'lightbox' && $link.parents(".thumbnails").find(".thumbnail").length
       # Image is part of a set
-      for a, i in $( $link.prop("tagName") + '[rel="' + $link.attr('rel') + '"]')
-        @album.push link: $(a).attr('href'), title: $(a).attr('title')
-        if $(a).attr('href') == $link.attr('href')
-          imageNumber = i
+      for a, i in $link.parents(".thumbnails").find(".thumbnail")
+        if !$(a).attr('href')  && !$(a).attr('data-target')
+          continue
+        @album.push link: $(a).attr('href') || $(a).attr('data-target'), title: $(a).attr('title') || $(a).attr('data-title')
+        if $link.attr('href') && $(a).attr('href') == $link.attr('href') || $link.attr('data-target') && $(a).attr('data-target') == $link.attr('data-target')
+          imageNumber = current
+        ++current
+    else
+      # If image is not part of a set
+      @album.push link: $link.attr('href') || $link.attr('data-target'), title: $link.attr('title') || $link.attr('data-title')
+
 
     # Position lightbox
     $window = $(window)
