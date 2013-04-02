@@ -2,253 +2,308 @@
 <html lang="en-us">
 <head>
 
-	<meta charset="utf-8">
-	<title>Lightbox 2</title>
+  <meta charset="utf-8">
+  <title>Lightbox for Bootstrap</title>
 
-	<meta name="description" lang="en" content="Lightbox 2 is a simple, unobtrusive script used to overlay images on the current page. It's a snap to setup and works on all modern browsers." />
-  <meta name="author" content="Lokesh Dhakar">
+  <meta name="description" lang="en" content="Lightbox for Bootstrap<, because it just works." />
+  <meta name="author" content="Dan Jones">
 
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="shortcut icon" type="image/ico" href="images/favicon.gif" />	
-	<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/lightbox.css" type="text/css" media="screen" />
+  <link rel="shortcut icon" type="image/ico" href="favicon.png" />
 
-  <link href='http://fonts.googleapis.com/css?family=Fredoka+One|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="css/bootstrap.lightbox.css" rel="stylesheet" media="screen">
+  <style>
+/*** Page Styles ***/
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
 
+section {
+  padding-top: 40px;
+}
+
+/* Jumbotron */
+.jumbotron {
+  position: relative;
+  padding: 70px 0 80px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+  background: #020031; /* Old browsers */
+  background: -moz-linear-gradient(45deg,  #020031 0%, #69c 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#69c)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg,  #020031 0%,#69c 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg,  #020031 0%,#69c 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg,  #020031 0%,#69c 100%); /* IE10+ */
+  background: linear-gradient(45deg,  #020031 0%,#69c 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#69c',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+}
+.jumbotron h1 {
+  font-size: 80px;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.jumbotron p {
+  font-size: 40px;
+  font-weight: 200;
+  line-height: 1.25;
+  margin-bottom: 30px;
+}
+
+/* Download Button */
+.download-btn {
+  text-align: center;
+}
+.download-btn .btn {
+  padding: 19px 24px;
+  font-size: 24px;
+  font-weight: 200;
+  color: #fff;
+  border: 0;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+  -webkit-transition: none;
+     -moz-transition: none;
+          transition: none;
+}
+.download-btn .btn:hover {
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+}
+.download-btn .btn:active {
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+     -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+          box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+}
+
+/*** Bootstrap  Pretty Print Styles ***/
+.com { color: #93a1a1; }
+.lit { color: #195f91; }
+.pun, .opn, .clo { color: #93a1a1; }
+.fun { color: #dc322f; }
+.str, .atv { color: #D14; }
+.kwd, .prettyprint .tag { color: #1e347b; }
+.typ, .atn, .dec, .var { color: teal; }
+.pln { color: #48484c; }
+
+.prettyprint {
+  padding: 8px;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+}
+.prettyprint.linenums {
+  -webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+     -moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+          box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin: 0 0 0 33px; /* IE indents via margin-left */
+}
+ol.linenums li {
+  padding-left: 12px;
+  color: #bebec5;
+  line-height: 20px;
+  text-shadow: 0 1px 0 #fff;
+}
+
+/* Bootstrap code examples
+-------------------------------------------------- */
+
+/* Base class */
+.example {
+  position: relative;
+  margin: 15px 0;
+  padding: 39px 19px 14px;
+  *padding-top: 19px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+/* Echo out a label for the example */
+.example:after {
+  content: "Example";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  color: #9da0a4;
+  -webkit-border-radius: 4px 0 4px 0;
+     -moz-border-radius: 4px 0 4px 0;
+          border-radius: 4px 0 4px 0;
+}
+
+/* Remove spacing between an example and it's code */
+.example + .prettyprint {
+  margin-top: -20px;
+  padding-top: 15px;
+}
+
+/* Custom example */
+.example .thumbnails .span3 {
+  width: 210px;
+}
+  </style>
 </head>
-<body>
-
-<div id="sidebar">
-	<h1 class="logo"><a href="http://www.lokeshdhakar.com/projects/lightbox2/">Lightbox<em>2</em></a></h1>
-	<p class="author"><a href="http://www.lokeshdhakar.com">by Lokesh Dhakar</a> <br />
-  <span class="twitter"><a href="https://twitter.com/intent/user?screen_name=lokeshdhakar">Follow me on <em>Twitter</em></a></span></p>
-
-	<ul id="nav">
-		<li><a href="#example" class="first">Example</a></li>
-		<li><a href="#download">Download</a></li>
-		<li><a href="#how">How to Use</a></li>
-		<li><a href="#support">Support</a></li>
-		<li><a href="#donate" class="last">Donate</a></li>
-	</ul>
-</div>
-
-<div id="content">
-
-<div class="section" id="overview">
-	<p class="lead">Lightbox is a <em>simple, unobtrusive</em> script used to overlay images on top of the current page. It's a <em>snap to setup</em> and works on <em>all modern browsers</em>.</p>
-</div>
-
-<hr />
-
-<div class="section" id="example">
-
-
-	<h2>Examples</h2>
-
-	<h3>Single image</h3>
-  <div class="imageRow">
-  	<div class="single">
-  		<a href="images/examples/image-1.jpg" rel="lightbox"><img src="images/examples/thumb-1.jpg" alt="" /></a>
-  	</div>
-  	<div class="single">
-  		<a href="images/examples/image-2.jpg" rel="lightbox" title="Optional caption."><img src="images/examples/thumb-2.jpg" alt="" /></a>
-  	</div>
-  </div>
-
-	<h3 style="clear: both;">Image set</h3>
-
-  <div class="imageRow">
-  	<div class="set">
-  	  <div class="single first">
-  		  <a href="images/examples/image-3.jpg" rel="lightbox[plants]" title="Click on the right side of the image to move forward."><img src="images/examples/thumb-3.jpg" alt="Plants: image 1 0f 4 thumb" /></a>
-  		</div>
-      <div class="single">
-  		  <a href="images/examples/image-4.jpg" rel="lightbox[plants]" title="Alternately you can press the right arrow key." ><img src="images/examples/thumb-4.jpg" alt="Plants: image 2 0f 4 thumb" /></a>
+<body data-spy="scroll" data-target=".navbar">
+<p class="hide"><a href="#overview">Skip Navigation</a></p>
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="./">Lightbox for Bootstrap</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="#overview">Overview</a>
+              </li>
+              </li>
+              <li class="">
+                <a href="#example">Example</a>
+              </li>
+              <li class="">
+                <a href="#markup">Markup</a>
+              </li>
+              <li class="">
+                <a href="#download">Download</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="single">
-  		  <a href="images/examples/image-5.jpg" rel="lightbox[plants]" title="The script preloads the next image in the set as you're viewing."><img src="images/examples/thumb-5.jpg" alt="Plants: image 3 0f 4 thumb" /></a>
-      </div>
-      <div class="single last">
-  		  <a href="images/examples/image-6.jpg" rel="lightbox[plants]" title="Click the X or anywhere outside the image to close"><img src="images/examples/thumb-6.jpg" alt="Plants: image 4 0f 4 thumb" /></a>
-      </div>
-  	</div>
+    </div>
+<header id="top" class="jumbotron subhead">
+  <div class="container">
+    <h1>Lightbox for Bootstrap</h1>
+    <p>It just works</p>
   </div>
-	
-</div>
+</header>
 
-<hr />
-
-<div class="section" id="download">
-  <h2>Download</h2>
-
-  <div class="row">
-    
-  	<a href="releases/lightbox2.51.zip" class="download">
-  	  <img src="images/box.png" alt="Box" class="box" />
-  	  <div class="file">
-  	    Lightbox <div class="version">v2.51</div>
-  	  </div>
-  	</a>
-
-  	<ul class="filelist">
-      <li class="header">Includes:</li>
-  	  <li>index.html</li>
-      <li><span class="folder">js/</span>jquery-1.7.2.min.js</li>
-      <li><span class="folder">js/</span>lightbox.js</li>	
-      <li><span class="folder">css/</span>lightbox.css</li>	
-      <li><span class="folder">images/</span>close.png</li>	
-      <li><span class="folder">images/</span>loading.gif</li>	
-      <li><span class="folder">images/</span>next.png</li>	
-      <li><span class="folder">images/</span>prev.png</li>
-      <li><span class="note">Plus a few files for the demo page</span></li>
-    </ul>
-  </div>
-
-  <p>Lightbox2 is open-source.<br /> Fork the code on <a href="https://github.com/lokesh/lightbox2">Github</a>.</p>
-
-  
-	
-	<h3>Changelog</h3>
-	<ul class="changelog">
-		<li><span class="version">v2.51 </span> - <span class="date">4/20/12</span> - IE Fix: removed stray console.log statements. :-/</li>
-		<li><span class="version">v2.5 </span> - <span class="date">4/10/12</span> - Switch to jQuery. Code put in Github. Compiling with Coffeescript and SASS.</li>
-		<li class="old"><span class="version">v2.05 </span> - <span class="date">3/18/11</span> - Upgraded Prototype (now works in IE9) and Scriptaculous. Minor bug fixes.</li>
-		<li class="old"><span class="version">v2.04 </span> - <span class="date">3/9/08</span>
-			<ul>	
-				<li>NEW - Upgraded Prototype from v1.4 to v1.6.0.2
-				<li>NEW - Moved label text into configuration for easier localization</li>
-				<li>UPDATED - Code cleaned up. Respect for the global namespace and native javascript objects.</li>
-				<li>FIXED - Caption displays as "null" when viewing an uncaptioned image after viewing a captioned image.</li>
-				<li>FIXED - Clicking 'close' button shifts layout as link focus' dotted line appears.</li>
-			</ul>
-		</li>
-		<li class="old"><span class="version">v2.03.3 </span> - <span class="date">5/21/07 </span>- Support for horizontally scrolling pages. Added updateImageList method for ajax'y pages.</li>	
-		<li class="old"><span class="version">v2.03.2 </span> - <span class="date">4/30/07</span> - Fixed animated gif support in IE/Opera.</li>
-		<li class="old"><span class="version">v2.03.1 </span> - <span class="date">4/18/07</span> - Fixed embed hiding. Overlay opacity var added to config. Image sets w/Imagemaps fix. Clearfix removed.</li>
-		<li class="old"><span class="version">v2.03</span> - <span class="date">4/10/07 </span>- Improved keyboard navigation. Animation off toggle. Hides Flash movies under overlay. Imagemap support. Valid CSS.</li>
-		<li class="old"><span class="version">v2.02</span> - Fixed layout issues caused by multiline captions. Added keyboard navigation.</li>
-		<li class="old"><span class="version">v2.01</span> - Centering in IE6 (any DOCTYPE) fixed. Smoothed out resize transition.</li>
-	</ul>
-	<a href="#" class="showOlderChanges">Show older changes</a>
-</div>
-
-<hr />
-
-
-<div class="section" id="how">
-	<h2>How to use</h2>
-	<h3>Part 1 - Setup</h3>
-	<ol>
-		<li>Lightbox 2 uses the <a href="http://jquery.com/">jQuery</a> framework. Load jQuery and the Lightbox javascript files in the proper order.
-<pre><code>&lt;script src=&quot;js/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;js/lightbox.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-		</li>
-		<li>Include the Lightbox CSS file.
-<pre><code>&lt;link href=&quot;css/lightbox.css&quot; rel=&quot;stylesheet&quot; /&gt;
-</code></pre>
-		</li>
-		<li>Check the CSS and make sure the referenced <code>prev.png</code> and <code>next.png</code> files are in the right location. Also, make sure the <code>loading.gif</code> and <code>close.png</code> files as referenced near the top of the <code>lightbox.js</code> file are in the right location.</li>
-	</ol>
-	<h3>Part 2 - Activate</h3>
-	<ol>
-		<li>Add a <code>rel="lightbox"</code> attribute to any link tag to activate Lightbox.
-<pre><code>&lt;a href=&quot;images/image-1.jpg&quot; rel=&quot;lightbox&quot; title=&quot;my caption&quot;&gt;image #1&lt;/a&gt;
-</code></pre>
-		<em>Optional: </em>Use the <code>title</code> attribute if you want to show a caption.		</li>
-		<li>If you have a set of related images that you would like to group, follow step one but additionally include a group name between square brackets in the rel attribute. 
-<pre><code>&lt;a href=&quot;images/image-1.jpg&quot; rel=&quot;lightbox[roadtrip]&quot;&gt;image #1&lt;/a&gt;
-&lt;a href=&quot;images/image-2.jpg&quot; rel=&quot;lightbox[roadtrip]&quot;&gt;image #2&lt;/a&gt;
-&lt;a href=&quot;images/image-3.jpg&quot; rel=&quot;lightbox[roadtrip]&quot;&gt;image #3&lt;/a&gt;
-</code></pre>
-	No limits to the number of image sets per page or how many images are allowed in each set. Go nuts!</li>
-	</ol>	
+<div class="container">
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>Welcome to yet another lightbox plugin for Twitter Bootstrap. This plugin aims to enable your users to view larger, higher resolution images just by clicking on  an image, or group of images and designed to be implemented in Bootstrap with minimal markup.</p>
+    <h3>Why</h3>
+    <p>I wanted a lightbox plugin that with minimal effort , would just work with the bootstrap framework. Unfortunately the existing <a href="http://jbutz.github.com/bootstrap-lightbox/">bootstrap-lightbox</a> plugin did not do that, requiring extra markup, buggy css and javascript, even setting up a collection of images to cycle through was complicated.  Instead of messing around trying to get it to just work, I grabbed the original <a href="http://lokeshdhakar.com/projects/lightbox2/">Lightbox</a> plugin and with a little prodding, I had a lightbox up and running exactly how I wanted. This plugin is an extention of that effort, incorporating ideas from the exiting plugins and migrating it over to the Bootstrap framework.</p>
+  </section>
+  <section id="example">
+    <h2>Example</h2>
+    <div class="example">
+        <ul class="thumbnails" data-toggle="lightbox">
+            <li class="span3"><a href="img/image-1.jpg" title="Title" class="thumbnail"><img src="img/thumb-1.jpg" alt=""/></a></li>
+            <li class="span3"><a href="img/image-2.jpg" class="thumbnail"><img src="img/thumb-2.jpg" alt=""/></a></li>
+            <li class="span3"><a href="img/image-3.jpg" class="thumbnail"><img src="img/thumb-3.jpg" alt=""/></a></li>
+            <li class="span3"><a href="img/image-4.jpg" class="thumbnail"><img src="img/thumb-4.jpg" alt=""/></a></li>
+        </ul>
+    </div>
+    <pre class="prettyprint linenums">
+&lt;ul class="thumbnails" data-toggle="lightbox"&gt;
+  &lt;li class="span3"&gt;
+    &lt;a href="img/image-1.jpg" class="thumbnail"&gt;
+      &lt;img src="img/thumb-1.jpg" alt=""/&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="span3"&gt;
+    &lt;a href="img/image-2.jpg" class="thumbnail"&gt;
+      &lt;img src="img/thumb-2.jpg" alt=""/&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="span3"&gt;
+    &lt;a href="img/image-3.jpg" class="thumbnail"&gt;
+      &lt;img src="img/thumb-3.jpg" alt=""/&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="span3"&gt;
+    &lt;a href="img/image-4.jpg" class="thumbnail"&gt;
+      &lt;img src="img/thumb-4.jpg" alt=""/&gt;
+    &lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+    </pre>
+  </section>
+  <section id="markup">
+    <h2>Markup</h2>
+    <h3>Step 1</h3>
+    <p>Include the CSS and Javascript files</p>
+    <pre class="prettyprint linenums">&lt;link href="css/bootstrap.lightbox.css" rel="stylesheet" media="screen"&gt;</pre>
+    <pre class="prettyprint linenums">&lt;script src="js/bootstrap.lightbox.js"&gt;&lt;/script&gt;</pre>
+    <h3>Step 2</h3>
+    <p>Add the <code>data-toggle="lightbox"</code> attribute to the <code>thumbnails</code> class element.</p>
+    <pre class="prettyprint linenums">&lt;ul class="thumbnails" data-toggle="lightbox"&gt;&lt;/ul&gt;</pre>
+    <h3>Step 3</h3>
+    <p>Link to a larger image with a <code>href="img/image-1.jpg"</code> link or <code>data-target="img/image-1.jpg"</code> for each <code>thumbnail</code> class element.</p>
+    <pre class="prettyprint linenums">&lt;a href="img/image-1.jpg" class="thumbnail"&gt;&lt;/a&gt;</pre>
+    <pre class="prettyprint linenums">&lt;div data-target="img/image-1.jpg" class="thumbnail"&gt;&lt;/div&gt;</pre>
+    <h3>Optional</h3>
+    <h4>Title</h4>
+    <pre class="prettyprint linenums">&lt;a href="img/image-1.jpg" title="Image 1" class="thumbnail"&gt;&lt;/a&gt;</pre>
+    <pre class="prettyprint linenums">&lt;div data-target="img/image-1.jpg" data-title="Image 1" class="thumbnail"&gt;&lt;/div&gt;</pre>
+  </section>
+  <section id="download">
+    <h2>Download</h2>
+    <div class="download-btn">
+        <p><a href="http://github.com/djinteractive" class="btn btn-primary btn-large">Download Lightbox for Bootstrap</a></p>
+    </div>
+    <h3>Requirements</h3>
+    <p>jQuery <abbr data-toggle="tooltip" data-placement="top" title="Untested with earlier versions of jQuery">v1.72+</abbr> <code><a href="http://jQuery.com/">http://jQuery.com/</a></code></p>
+    <p>Bootstrap <code><a href="http://twitter.github.com/bootstrap/">http://twitter.github.com/bootstrap/</a></code></p>
+    <h3>License</h3>
+    <p>Licensed under the Creative Commons Attribution 2.5 License <a href="http://creativecommons.org/licenses/by/2.5/">http://creativecommons.org/licenses/by/2.5/</a></p>
+    <h3>Thanks</h3>
+    <p>Based on the original <a href="https://github.com/lokesh/lightbox2/">Lightbox 2</a> by <a href="http://lokeshdhakar.com/">Lokesh Dhakar</a></p>
+    <h3>Alternatives</h3>
+    <p>Bootstrap - Lightbox <code><a href="http://jbutz.github.com/bootstrap-lightbox/">http://jbutz.github.com/bootstrap-lightbox/</a></code></p>
+    <p>Lightbox 2 <code><a href="http://lokeshdhakar.com/projects/lightbox2/">http://lokeshdhakar.com/projects/lightbox2/</a></code></p>
+  </section>
 </div>
 
 
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.lightbox.js"></script>
 
-<hr />
-
-<div class="section" id="support">
-	<h2>Support</h2>
-	<p>For personal support issues and feature requests please post a message in the forums. I do not have time to personally respond to support emails, please use the forum. Thanks!
-	</p>
-	<p>For bug reports, send a note with the browser you are using and the version of Lightbox to lokesh.dhakar@[ google's email service ].com.</p>
-
-  	<a href="http://lokeshdhakar.com/forums/" class="forums">
-  	  <img src="images/speech-bubbles.png" alt="Speech bubbles" class="speech" />
-  	  <div class="link">
-  	    Lightbox<br />
-  	    <span class="sub">Forums</span>
-  	  </div>
-  	</a>	
-
-</div>
-
-<hr />
-
-
-<div class="section" id="donate">
-	<h2>Donate</h2>
-	<p>Lightbox is completely free to use. If you're using Lightbox on a commercial project and feeling generous, consider a donation. All donations are sincerely appreciated. Thanks!</p>
-    
-    <form name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-		<fieldset>
-			<input type="hidden" name="cmd" value="_xclick" />
-			<input type="hidden" name="business" value="lokesh.dhakar@gmail.com" />
-            <input type="hidden" name="item_name" value="Donation for Lightbox">
-			<input type="hidden" name="no_note" value="1" />
-			<input type="hidden" name="currency_code" value="USD" />
-			<input type="hidden" name="tax" value="0" />
-			<input type="hidden" name="bn" value="PP-DonationsBF" />
-			<input type="image" src="images/donate.png" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" />
-		</fieldset>
-	</form>
-</div>
-
-<hr />
-
-<div class="section" id="elsewhere">
-<h3>Find me elsewhere</h3>
-
-  <div class="row">
-    <a href="https://twitter.com/intent/user?screen_name=lokeshdhakar" class="button">Twitter</a>
-    <a href="http://lokeshdhakar.com/" class="button">Blog</a>
-  </div>
-</div>
-
-</div><!-- end #content -->
-
-<script src="js/jquery-1.7.2.min.js"></script>
-<script src="js/jquery-ui-1.8.18.custom.min.js"></script>
-<script src="js/jquery.smooth-scroll.min.js"></script>
-<script src="js/lightbox.js"></script>
+<!-- The following external scripts are only included for the example demonstration and are not needed to run the lightbox. -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
 
 <script>
-  jQuery(document).ready(function($) {
-      $('a').smoothScroll({
-        speed: 1000,
-        easing: 'easeInOutCubic'
-      });
+// Load code prettifier
+$(document).ready(function(){
+  prettyPrint();
+});
 
-      $('.showOlderChanges').on('click', function(e){
-        $('.changelog .old').slideDown('slow');
-        $(this).fadeOut();
-        e.preventDefault();
-      })
-  });
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-2196019-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
+// Fancy text animation
+var ta = (function(a){
+  var a = $(a), b = a.text(), c = b.length, d = 200;
+  a.empty()
+  for(i=0;i<c;++i){
+    a.append($("<span/>").text(b[i]).fadeIn(1300+(d*i)));
+  }
+})("header p");
+$("abbr[data-toggle=tooltip]").tooltip();
 </script>
 </body>
 </html>
