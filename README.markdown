@@ -8,26 +8,35 @@ I wanted a lightbox plugin that with minimal effort , would just work with the b
 ##Markup
 ###Step 1
 Include the CSS and Javascript files.
-
-    <link href="css/bootstrap.lightbox.css" rel="stylesheet" media="screen">
-    <script src="js/bootstrap.lightbox.js"></script>
-
+````html
+<link href="css/bootstrap.lightbox.css" rel="stylesheet" media="screen">
+<script src="js/bootstrap.lightbox.js"></script>
+````
 ###Step 2
 Add the data-toggle="lightbox" attribute to the thumbnails class element.
-
-    <ul class="thumbnails" data-toggle="lightbox"></ul>
-
+````html
+<ul class="thumbnails" data-toggle="lightbox"></ul>
+````
 ###Step 3
 Link to a larger image with a href="img/image-1.jpg" link or data-target="img/image-1.jpg" for each thumbnail class element.
-
-    <a href="img/image-1.jpg" class="thumbnail"></a>
-    <div data-target="img/image-1.jpg" class="thumbnail"></div>
-
+````html
+<a href="img/image-1.jpg" class="thumbnail"></a>
+````
+````html
+<div data-target="img/image-1.jpg" class="thumbnail"></div>
+````
 ###Optional
-####Title
-    <a href="img/image-1.jpg" title="Image 1" class="thumbnail"></a>
-    <div data-target="img/image-1.jpg" data-title="Image 1" class="thumbnail"></div>
-
+####Add a Title
+````html
+<a href="img/image-1.jpg" title="Image 1" class="thumbnail"></a>
+````
+````html
+<div data-target="img/image-1.jpg" data-title="Image 1" class="thumbnail"></div>
+````
+####Add a Description
+````html
+<a href="img/image-1.jpg" data-description="Lorem ipsum dolor" class="thumbnail"></a>
+````
 
 ##Requirements
 jQuery v1.72+ [http://jQuery.com/](http://jQuery.com/)

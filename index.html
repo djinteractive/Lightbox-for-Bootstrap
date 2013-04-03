@@ -214,31 +214,31 @@ ol.linenums li {
     <h2>Example</h2>
     <div class="example">
         <ul class="thumbnails" data-toggle="lightbox">
-            <li class="span3"><a href="img/image-1.jpg" title="Title" class="thumbnail"><img src="img/thumb-1.jpg" alt=""/></a></li>
-            <li class="span3"><a href="img/image-2.jpg" class="thumbnail"><img src="img/thumb-2.jpg" alt=""/></a></li>
-            <li class="span3"><a href="img/image-3.jpg" class="thumbnail"><img src="img/thumb-3.jpg" alt=""/></a></li>
-            <li class="span3"><a href="img/image-4.jpg" class="thumbnail"><img src="img/thumb-4.jpg" alt=""/></a></li>
+            <li class="span3"><a href="img/image-1.jpg" title="Image #1" data-description="Lorem ipsum dolor" class="thumbnail"><img src="img/thumb-1.jpg" alt=""/></a></li>
+            <li class="span3"><a href="img/image-2.jpg" title="Image #2" data-description="Lorem ipsum dolor" class="thumbnail"><img src="img/thumb-2.jpg" alt=""/></a></li>
+            <li class="span3"><a href="img/image-3.jpg" title="Image #3" data-description="Lorem ipsum dolor" class="thumbnail"><img src="img/thumb-3.jpg" alt=""/></a></li>
+            <li class="span3"><a href="img/image-4.jpg" title="Image #4" data-description="Lorem ipsum dolor" class="thumbnail"><img src="img/thumb-4.jpg" alt=""/></a></li>
         </ul>
     </div>
     <pre class="prettyprint linenums">
 &lt;ul class="thumbnails" data-toggle="lightbox"&gt;
   &lt;li class="span3"&gt;
-    &lt;a href="img/image-1.jpg" class="thumbnail"&gt;
+    &lt;a href="img/image-1.jpg" title="Image #1" data-description="Lorem ipsum dolor" class="thumbnail"&gt;
       &lt;img src="img/thumb-1.jpg" alt=""/&gt;
     &lt;/a&gt;
   &lt;/li&gt;
   &lt;li class="span3"&gt;
-    &lt;a href="img/image-2.jpg" class="thumbnail"&gt;
+    &lt;a href="img/image-2.jpg" title="Image #2" data-description="Lorem ipsum dolor" class="thumbnail"&gt;
       &lt;img src="img/thumb-2.jpg" alt=""/&gt;
     &lt;/a&gt;
   &lt;/li&gt;
   &lt;li class="span3"&gt;
-    &lt;a href="img/image-3.jpg" class="thumbnail"&gt;
+    &lt;a href="img/image-3.jpg" title="Image #3" data-description="Lorem ipsum dolor" class="thumbnail"&gt;
       &lt;img src="img/thumb-3.jpg" alt=""/&gt;
     &lt;/a&gt;
   &lt;/li&gt;
   &lt;li class="span3"&gt;
-    &lt;a href="img/image-4.jpg" class="thumbnail"&gt;
+    &lt;a href="img/image-4.jpg" title="Image #4" data-description="Lorem ipsum dolor" class="thumbnail"&gt;
       &lt;img src="img/thumb-4.jpg" alt=""/&gt;
     &lt;/a&gt;
   &lt;/li&gt;
@@ -249,8 +249,9 @@ ol.linenums li {
     <h2>Markup</h2>
     <h3>Step 1</h3>
     <p>Include the CSS and Javascript files</p>
-    <pre class="prettyprint linenums">&lt;link href="css/bootstrap.lightbox.css" rel="stylesheet" media="screen"&gt;</pre>
-    <pre class="prettyprint linenums">&lt;script src="js/bootstrap.lightbox.js"&gt;&lt;/script&gt;</pre>
+    <pre class="prettyprint linenums">
+&lt;link href="css/bootstrap.lightbox.css" rel="stylesheet" media="screen"&gt;
+&lt;script src="js/bootstrap.lightbox.js"&gt;&lt;/script&gt;</pre>
     <h3>Step 2</h3>
     <p>Add the <code>data-toggle="lightbox"</code> attribute to the <code>thumbnails</code> class element.</p>
     <pre class="prettyprint linenums">&lt;ul class="thumbnails" data-toggle="lightbox"&gt;&lt;/ul&gt;</pre>
@@ -259,9 +260,11 @@ ol.linenums li {
     <pre class="prettyprint linenums">&lt;a href="img/image-1.jpg" class="thumbnail"&gt;&lt;/a&gt;</pre>
     <pre class="prettyprint linenums">&lt;div data-target="img/image-1.jpg" class="thumbnail"&gt;&lt;/div&gt;</pre>
     <h3>Optional</h3>
-    <h4>Title</h4>
+    <h4>Add a Title</h4>
     <pre class="prettyprint linenums">&lt;a href="img/image-1.jpg" title="Image 1" class="thumbnail"&gt;&lt;/a&gt;</pre>
     <pre class="prettyprint linenums">&lt;div data-target="img/image-1.jpg" data-title="Image 1" class="thumbnail"&gt;&lt;/div&gt;</pre>
+    <h4>Add a Description</h4>
+    <pre class="prettyprint linenums">&lt;a href="img/image-1.jpg" data-description="Lorem ipsum dolor" class="thumbnail"&gt;&lt;/a&gt;</pre>
   </section>
   <section id="download">
     <h2>Download</h2>
