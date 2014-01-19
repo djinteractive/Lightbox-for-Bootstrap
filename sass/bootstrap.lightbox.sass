@@ -46,12 +46,15 @@
   background-color: #fff
   +pie-clearfix
   width: 250px
-  height: 250px
+  max-width: 95%
+  min-height: 250px
   margin: 0 auto
-  +border-top-radius($radius)
+  +border-radius($radius)
 
 .lb-container
+  min-height: 250px
   padding: 10px
+  position: relative
 
 .lb-loader
   position: absolute
@@ -101,7 +104,6 @@
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAtCAYAAADsvzj/AAAFFklEQVR42s2aXUxbZRjHPf2ig3U43ESK/dgIrU6sU+dHKCvYgjJm5qIbbDov3IUhxjg18ZKvAHpRCoUYSTDhErwxIjLQC03MIuEj4QYVyhJNMN5BgPCNjPpv8m9O85JzGs1yTk/yC015S/jlef7P+54DDwiXRAzACEzECAzkvl7xePy+IF6pEmZg4VfKZL6IlFIBKzgKjoOHyIPABqxcI2WiiETMIBvkAQcoBmeIh++dADlcawBS5ojIrXSEEm7wlMlkClmt1tfAZbx+Ge+do9AjrJhJlskskaPg0YSEz+e7MTU1dWdvb29/Z2fnn4mJianCwsKb+N558AQoADa5MpkgwmAzB0UWiyW4uLg4Fxeu6enp351O5/tYUw6eTJGxUEZ3ERNF8oAXrfTq9vb2nqwgX6jSgsvl+gDrXgI+YAfHZBn9K2LilPJApGZra2sjrnDNzMz84Xa7P8bayqSM0GaS3iI2Br20vr4+vLq6uqYkMz8//7fD4fgEa6tkGWEA6Bj2bJAPSkDI7/d/BhnFyszNzf1lt9s/kisjDACd95Fc7hfPgupQKBRZXl7eVJIZHx+fwwD4kJkpoUyyMpJeIgaQxenlBM+B6qqqqsjKysq2kgwGwF1k5hbWVnCa2QUZXc5aRkHmeVBTWVkZ3d/fP1CSwWi+y8qEKHNoAGgtIlHGwjZzUeZieXl519ra2rqSDDbN+fz8/FuCjDAAtBKhjFAZN9usprS0NIw221Bps1hBQYEsIwwA7UR4CZk5DtyszAUMgE4OAKXKxNhmFQoDQAsR1cy4WJlXMAA6UZktJZnJyckFDACeAA4PAM1FeBlSMuPkKfhCIBDoWF9f31RpswVUJrXNCsUBoJmIOACE0VyDTbMDA2BDpTKxlAHgk9uMMtqKUOZwm53jAEjsM5tpBkDi1BwAj4GT4Ah/nqSZiCgjDIAXweVgMPjF0tKSWmZ+RWbeYYs52WImPUTEAWDlvbyXB8ebmGZfxWIxxX1mdnb2N+TqbaPReIp5swCDjiIMP2/EOGbfBZ8ODg7+GVe5BgYGomaz2c3P6ioiARN7/GHuE9Xgvaampl92d3eVjjEHvb29X2dlZQUlSUpWxKxrRihxAhSDMnC9sbHxB7VKRKPRYay7BM7Ke4ouYWclmA1K+MGVhoaG79Qkuru7x7DuGqWLQB7I0l6EEkIlzoOrLS0tt9UkIpHIKDKRlPDy8xy92uwjokR2ikQA1La1tY2qOBx0dHTcNhgMtVhbCooFCUmrI4oocTIlE1daW1vH1CS6urq+x7q6pAQ/ny1IaCIiBtuTzERzc7NqO0EikYnrlKaEUAkNRJQkysAbCPZwumBTIgA8KZUwaX0/Igbbw1/qajgc/lFNIpEJPCOuo7RHIROaiIiZ8IByUNfZ2flTGomxdMHWQkQSK/E/gn1NLdhai1h4qj0NXgCvI9gjafaJRCbeVAq2Xk8ac4AdnMUJ9RKOHd+oSfT399/BuekG288rSzDYOj77zQVF6PUKnGJH1ST6+vp+xsPut7jDe8VMZPyfFbhjj3E6+YFHKRP6VEQW8UDkooLIAU6xo1hTK0ooPOrRtbVOIx9lIyMjiRPtvRSJez09Pd8m9pP/IqFn2AvAGZvNFmxvb/98eHh4emhoaBqvv4RgDe/RixV2bP1FhNvXQvA48IGnwTP8WgJcIE8MdqaIiA8VjvE21gFOEQffy+UaWSIDRQxy8PnfD5AiOcAqPiXMJJF/AYJfIzT2wWtvAAAAAElFTkSuQmCC") right 48% no-repeat
 
 .lb-dataContainer
-  background: #fff
   color: #222
   margin: 0 auto
   position: relative

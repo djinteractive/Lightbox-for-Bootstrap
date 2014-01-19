@@ -53,14 +53,14 @@
   background-color: white;
   *zoom: 1;
   width: 250px;
-  height: 250px;
+  max-width: 95%;
+  min-height: 250px;
   margin: 0 auto;
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  border-top-left-radius: 4px;
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-right-radius: 4px;
-  border-top-right-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
 }
 .lb-outerContainer:after {
   content: "";
@@ -69,7 +69,9 @@
 }
 
 .lb-container {
+  min-height: 250px;
   padding: 10px;
+  position: relative;
 }
 
 .lb-loader {
@@ -127,7 +129,6 @@
 }
 
 .lb-dataContainer {
-  background: white;
   color: #222222;
   margin: 0 auto;
   position: relative;

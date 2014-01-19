@@ -225,7 +225,6 @@ class Lightbox
 
     $outerContainer = $lightbox.find(".lb-outerContainer")
     oldWidth = $outerContainer.outerWidth()
-    oldHeight = $outerContainer.outerHeight()
 
     $container = $lightbox.find(".lb-container")
     containerTopPadding = parseInt $container.css("padding-top"), 10
@@ -236,24 +235,14 @@ class Lightbox
     newWidth = imageWidth + containerLeftPadding + containerRightPadding
     newHeight = imageHeight + containerTopPadding + containerBottomPadding
 
-    # Animate just the width, just the height, or both, depending on what is different
-    if newWidth != oldWidth && newHeight != oldHeight
+    # Animate just the width
+    if newWidth != oldWidth
       $outerContainer.animate
         width: newWidth,
-        height: newHeight
-      , @options.resizeDuration, "swing"
-    else if newWidth != oldWidth
-      $outerContainer.animate
-        width: newWidth
-      , @options.resizeDuration, "swing"
-    else if newHeight != oldHeight
-      $outerContainer.animate
-        height: newHeight
-      , @options.resizeDuration, "swing"
+        @options.resizeDuration, "swing"
 
     # Wait for resize animation to finsh before showing the image
     setTimeout =>
-      $lightbox.find(".lb-dataContainer").width(newWidth)
       $lightbox.find(".lb-prevLink").height(newHeight)
       $lightbox.find(".lb-nextLink").height(newHeight)
       @showImage()
