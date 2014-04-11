@@ -282,7 +282,7 @@ lightbox = new Lightbox options
         _this = this;
       $lightbox = $("#lightbox");
       if (typeof this.album[this.currentImageIndex].title !== "undefined" && this.album[this.currentImageIndex].title !== "") {
-        $lightbox.find("h4").html(this.album[this.currentImageIndex].title).fadeIn("fast");
+        $lightbox.find("h4").html(this.album[this.currentImageIndex].title).fadeIn("fast").find('a').on('click', function() { location.href = $(this).attr('href') });
       }
       if (typeof this.album[this.currentImageIndex].description !== "undefined" && this.album[this.currentImageIndex].description !== "") {
         $lightbox.find(".lb-description").html(this.album[this.currentImageIndex].description).fadeIn("fast");
