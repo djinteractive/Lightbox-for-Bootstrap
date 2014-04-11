@@ -2,7 +2,7 @@
 Lightbox for Bootstrap aims to enable your users to view larger, higher resolution images just by clicking on an image, or group of images and designed to be implemented in Bootstrap with minimal markup.
 
 ##Why
-I wanted a lightbox plugin that with minimal effort , would just work with the bootstrap framework. Unfortunately the existing bootstrap-lightbox plugin did not do that, requiring extra markup, buggy css and javascript, even setting up a collection of images to cycle through was complicated. Instead of messing around trying to get it to just work, I grabbed the original Lightbox plugin and with a little prodding, I had a lightbox up and running exactly how I wanted. This plugin is an extention of that effort, incorporating ideas from the exiting plugins and migrating it over to the Bootstrap framework.
+I wanted a lightbox plugin that with minimal effort , would just work with the bootstrap framework. Unfortunately the existing bootstrap-lightbox plugin did not do that, requiring extra markup, buggy css and javascript, even setting up a collection of images to cycle through was complicated. Instead of messing around trying to get it to just work, I grabbed the original Lightbox plugin and with a little prodding, I had a lightbox up and running exactly how I wanted. This plugin is an extention of that effort, incorporating ideas from the existing plugins and migrating it over to the Bootstrap framework.
 
 
 ##Markup
@@ -34,8 +34,14 @@ Link to a larger image with a href="img/image-1.jpg" link or data-target="img/im
 <div data-target="img/image-1.jpg" data-title="Image 1" class="thumbnail"></div>
 ````
 ####Add a Description
+
 ````html
 <a href="img/image-1.jpg" data-description="Lorem ipsum dolor" class="thumbnail"></a>
+````
+####Add a link to the Title of the Lightbox
+
+````html
+<a class="thumbnail" href="http://placehold.it/600x500" title="&lt;a href=&quot;http://google.com&quot;&gt;Link Here&lt;/a&gt;" data-description="Description" target="_blank"></a>
 ````
 
 ##Requirements
