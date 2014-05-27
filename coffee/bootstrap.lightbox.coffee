@@ -26,6 +26,7 @@ Lightbox
 - build
 - start
 - changeImage
+- setTitle
 - sizeContainer
 - showImage
 - updateNav
@@ -135,7 +136,17 @@ class Lightbox
       @end()
       return false
 
+    $lightbox.find(".lb-caption").on "click", "a", (e) =>
+      if @album[@currentImageIndex].titleLink[0] == "#"
+        @end()
+        window.location.hash = ""
+        window.location.hash = @album[@currentImageIndex].titleLink
+      else
+        window.open( @album[@currentImageIndex].titleLink )
+      return false
+
     return
+
 
   # Show overlay and lightbox. If the image is part of a set, add siblings to album array.
   start: ($link) ->
@@ -158,13 +169,13 @@ class Lightbox
       for a, i in $link.parents(".thumbnails").find(".thumbnail")
         if !$(a).attr("href")  && !$(a).attr("data-target")
           continue
-        @album.push link: $(a).attr("href") || $(a).attr("data-target"), title: $(a).attr("title") || $(a).attr("data-title"), description: $(a).attr("data-description")
+        @album.push link: $(a).attr("href") || $(a).attr("data-target"), title: $(a).attr("title") || $(a).attr("data-title"), titleLink: $(a).attr("data-title-link"), description: $(a).attr("data-description")
         if $link.attr("href") && $(a).attr("href") == $link.attr("href") || $link.attr("data-target") && $(a).attr("data-target") == $link.attr("data-target")
           imageNumber = current
         ++current
     else
       # If image is not part of a set
-      @album.push link: $link.attr("href") || $link.attr("data-target"), title: $link.attr("title") || $link.attr("data-title"), description: $link.attr("data-description")
+      @album.push link: $link.attr("href") || $link.attr("data-target"), title: $link.attr("title") || $link.attr("data-title"), titleLink: $(a).attr("data-title-link"), description: $link.attr("data-description")
 
 
     # Position lightbox
@@ -210,6 +221,14 @@ class Lightbox
     preloader.src = @album[imageNumber].link
     @currentImageIndex = imageNumber
     return
+
+
+  setTitle: ($title,$titleLink) ->
+    if typeof $titleLink != "undefined" && $titleLink != ""
+      $title = $("<a/>")
+        .attr({"href":$titleLink,"title":$title})
+        .text($title)
+    return $title
 
 
   # Stretch overlay to fit the document
@@ -280,7 +299,7 @@ class Lightbox
 
     if typeof @album[@currentImageIndex].title != "undefined" && @album[@currentImageIndex].title != ""
       $lightbox.find("h4")
-        .html( @album[@currentImageIndex].title)
+        .html( @setTitle( @album[@currentImageIndex].title, @album[@currentImageIndex].titleLink ) )
         .fadeIn("fast")
 
     if typeof @album[@currentImageIndex].description != "undefined" && @album[@currentImageIndex].description != ""

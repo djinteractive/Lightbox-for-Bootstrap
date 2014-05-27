@@ -33,6 +33,10 @@ Link to a larger image with a href="img/image-1.jpg" link or data-target="img/im
 ````html
 <div data-target="img/image-1.jpg" data-title="Image 1" class="thumbnail"></div>
 ````
+####Add a Link to the Title
+````html
+<a href="img/image-1.jpg" title="Image 1" data-title-link="http://google.com" class="thumbnail"></a>
+````
 ####Add a Description
 ````html
 <a href="img/image-1.jpg" data-description="Lorem ipsum dolor" class="thumbnail"></a>

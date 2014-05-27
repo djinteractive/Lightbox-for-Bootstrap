@@ -27,6 +27,7 @@ Lightbox
 - build
 - start
 - changeImage
+- setTitle
 - sizeContainer
 - showImage
 - updateNav
@@ -153,6 +154,16 @@ lightbox = new Lightbox options
         _this.end();
         return false;
       });
+      $lightbox.find(".lb-caption").on("click", "a", function(e) {
+        if (_this.album[_this.currentImageIndex].titleLink[0] === "#") {
+          _this.end();
+          window.location.hash = "";
+          window.location.hash = _this.album[_this.currentImageIndex].titleLink;
+        } else {
+          window.open(_this.album[_this.currentImageIndex].titleLink);
+        }
+        return false;
+      });
     };
 
     Lightbox.prototype.start = function($link) {
@@ -178,6 +189,7 @@ lightbox = new Lightbox options
           this.album.push({
             link: $(a).attr("href") || $(a).attr("data-target"),
             title: $(a).attr("title") || $(a).attr("data-title"),
+            titleLink: $(a).attr("data-title-link"),
             description: $(a).attr("data-description")
           });
           if ($link.attr("href") && $(a).attr("href") === $link.attr("href") || $link.attr("data-target") && $(a).attr("data-target") === $link.attr("data-target")) {
@@ -189,6 +201,7 @@ lightbox = new Lightbox options
         this.album.push({
           link: $link.attr("href") || $link.attr("data-target"),
           title: $link.attr("title") || $link.attr("data-title"),
+          titleLink: $(a).attr("data-title-link"),
           description: $link.attr("data-description")
         });
       }
@@ -223,6 +236,16 @@ lightbox = new Lightbox options
       };
       preloader.src = this.album[imageNumber].link;
       this.currentImageIndex = imageNumber;
+    };
+
+    Lightbox.prototype.setTitle = function($title, $titleLink) {
+      if (typeof $titleLink !== "undefined" && $titleLink !== "") {
+        $title = $("<a/>").attr({
+          "href": $titleLink,
+          "title": $title
+        }).text($title);
+      }
+      return $title;
     };
 
     Lightbox.prototype.sizeOverlay = function() {
@@ -282,7 +305,7 @@ lightbox = new Lightbox options
         _this = this;
       $lightbox = $("#lightbox");
       if (typeof this.album[this.currentImageIndex].title !== "undefined" && this.album[this.currentImageIndex].title !== "") {
-        $lightbox.find("h4").html(this.album[this.currentImageIndex].title).fadeIn("fast");
+        $lightbox.find("h4").html(this.setTitle(this.album[this.currentImageIndex].title, this.album[this.currentImageIndex].titleLink)).fadeIn("fast");
       }
       if (typeof this.album[this.currentImageIndex].description !== "undefined" && this.album[this.currentImageIndex].description !== "") {
         $lightbox.find(".lb-description").html(this.album[this.currentImageIndex].description).fadeIn("fast");
