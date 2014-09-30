@@ -313,7 +313,7 @@ lightbox = new Lightbox options
       if (this.album.length > 1) {
         $lightbox.find(".lb-number").html(this.options.labelImage + " " + (this.currentImageIndex + 1) + " " + this.options.labelOf + "  " + this.album.length).fadeIn("fast");
       } else {
-        $lightbox.find(".lb-number").hide();
+        $lightbox.find(".lb-number, .close").hide();
       }
       $lightbox.find(".lb-outerContainer").removeClass("animating");
       $lightbox.find(".lb-dataContainer").fadeIn(this.resizeDuration, function() {

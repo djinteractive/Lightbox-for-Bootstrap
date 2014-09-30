@@ -312,7 +312,7 @@ class Lightbox
         .html( @options.labelImage + " " + (@currentImageIndex + 1) + " " + @options.labelOf + "  " + @album.length)
         .fadeIn("fast")
     else
-      $lightbox.find(".lb-number").hide()
+      $lightbox.find(".lb-number, .close").hide()
 
     $lightbox.find(".lb-outerContainer").removeClass "animating"
 
