@@ -180,7 +180,7 @@ lightbox = new Lightbox options
       imageNumber = 0;
       current = 0;
       if ($link.parents(".thumbnails").attr("data-toggle") === "lightbox" && $link.parents(".thumbnails").find(".thumbnail").length) {
-        _ref = $link.parents(".thumbnails").find(".thumbnail");
+        _ref = $link.parents(".thumbnails").find(".thumbnail:not('.thumbnail-noindex')");
         for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
           a = _ref[i];
           if (!$(a).attr("href") && !$(a).attr("data-target")) {
